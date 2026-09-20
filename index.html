@@ -1,78 +1,30 @@
+
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="한반도의 역사: 선사부터 오늘까지" />
-    <title>한반도의 시간 — 한국사 개요</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap");
+<head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
 
-      :root { --ink:#171717; --soft:#666; --line:#dedede; --paper:#f6f6f3; --white:#fff; }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard, "Apple SD Gothic Neo", sans-serif; line-height:1.75; }
-      .wrap { width:min(1120px, calc(100% - 48px)); margin:auto; }
-      header { min-height:82vh; display:flex; flex-direction:column; justify-content:space-between; padding:28px 0 56px; border-bottom:1px solid var(--ink); }
-      nav { display:flex; justify-content:space-between; align-items:center; font-size:.79rem; letter-spacing:.1em; text-transform:uppercase; }
-      nav a { color:inherit; text-decoration:none; }
-      .hero { max-width:850px; margin:70px 0 20px; }
-      .eyebrow { display:block; font-size:.78rem; font-weight:700; letter-spacing:.14em; color:var(--soft); }
-      h1,h2,h3 { font-family:"Noto Serif KR", serif; letter-spacing:-.055em; line-height:1.23; }
-      h1 { font-size:clamp(3.2rem, 9vw, 7.2rem); margin:17px 0 27px; font-weight:600; }
-      .lead { max-width:570px; font-family:"Noto Serif KR", serif; font-size:clamp(1.05rem, 2vw, 1.35rem); letter-spacing:-.035em; }
-      .scroll { font-size:.75rem; letter-spacing:.11em; color:var(--soft); }
-      section { padding:110px 0; border-bottom:1px solid var(--line); }
-      .section-head { display:grid; grid-template-columns:1fr 2fr; gap:30px; margin-bottom:52px; }
-      .section-head h2 { margin:0; font-size:clamp(2rem,4vw,3.4rem); }
-      .section-head p { margin:8px 0 0; color:#444; max-width:560px; }
-      .timeline { border-top:1px solid var(--ink); }
-      article { display:grid; grid-template-columns:160px 1fr; gap:38px; padding:31px 0 36px; border-bottom:1px solid var(--line); }
-      .year { font-size:.79rem; letter-spacing:.08em; font-weight:700; color:var(--soft); padding-top:7px; }
-      h3 { margin:0 0 8px; font-size:1.65rem; font-weight:600; }
-      article p { margin:0; max-width:680px; color:#393939; }
-      .quote { padding:clamp(44px,7vw,88px) 0; border-bottom:1px solid var(--ink); }
-      .quote p { max-width:840px; margin:0; font-family:"Noto Serif KR",serif; font-size:clamp(1.7rem,4vw,3.45rem); line-height:1.45; letter-spacing:-.06em; }
-      .facts { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--ink); }
-      .fact { padding:26px; min-height:178px; border-right:1px solid var(--ink); }
-      .fact:last-child { border:0; }
-      .fact strong { display:block; font-family:"Noto Serif KR",serif; font-size:2rem; margin-bottom:24px; }
-      .fact span { color:#4d4d4d; font-size:.92rem; }
-      footer { padding:30px 0 45px; display:flex; justify-content:space-between; gap:20px; color:var(--soft); font-size:.77rem; }
-      @media (max-width:680px) { .wrap { width:min(100% - 32px,1120px); } header { min-height:74vh; } .section-head,article { grid-template-columns:1fr; gap:8px; } .section-head { margin-bottom:36px; } article { padding:26px 0; } .facts { grid-template-columns:1fr; } .fact { border-right:0; border-bottom:1px solid var(--ink); min-height:auto; } .fact:last-child { border-bottom:0; } footer { flex-direction:column; } }
-    </style>
-  </head>
-  <body>
-    <main class="wrap">
-      <header>
-        <nav><a href="#overview">Korean History</a><span>01 — 개요</span></nav>
-        <div class="hero">
-          <span class="eyebrow">A BRIEF HISTORY OF KOREA</span>
-          <h1>한반도의<br />긴 시간</h1>
-          <p class="lead">고대 국가의 형성에서 오늘의 대한민국까지. 한반도는 교류와 갈등, 변화와 회복을 거치며 고유한 역사와 문화를 만들어 왔습니다.</p>
-        </div>
-        <span class="scroll">SCROLL TO EXPLORE ↓</span>
-      </header>
+  <style>
+    h1, h3 {
+      color: black;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-      <section id="overview">
-        <div class="section-head"><h2>흐름으로 보는<br />한국사</h2><p>한국사는 여러 국가와 왕조가 한반도에서 공존하고 통합해 온 과정입니다. 시대마다 사회의 모습은 달라졌지만, 주변 세계와 적극적으로 관계를 맺으며 독자적인 문화적 기반을 다져 왔습니다.</p></div>
-        <div class="timeline">
-          <article><span class="year">선사 · 고대</span><div><h3>국가의 탄생</h3><p>구석기와 신석기 문화를 거쳐 청동기 시대에 이르며 계층 사회와 정치 조직이 발전했습니다. 고조선 이후 고구려·백제·신라가 성장해 각자의 문화를 꽃피웠습니다.</p></div></article>
-          <article><span class="year">676 — 935</span><div><h3>통일 신라와 발해</h3><p>신라는 한반도 남부를 통일하며 불교 문화와 국제 교류를 크게 발전시켰습니다. 북쪽에서는 발해가 고구려를 계승한 국가로 성장해 동북아의 중요한 축을 이루었습니다.</p></div></article>
-          <article><span class="year">918 — 1392</span><div><h3>고려, 하나의 이름이 되다</h3><p>고려는 후삼국을 통합하고 중앙 집권 체제를 정비했습니다. 불교와 인쇄 문화가 융성했으며, 오늘날 ‘Korea’라는 이름의 뿌리가 된 나라입니다.</p></div></article>
-          <article><span class="year">1392 — 1897</span><div><h3>조선의 질서와 문화</h3><p>유교를 국가 운영의 바탕으로 삼은 조선은 약 500년 동안 이어졌습니다. 세종 시대에 훈민정음이 창제되었고, 과학·예술·기록 문화가 폭넓게 발전했습니다.</p></div></article>
-          <article><span class="year">1897 — 1945</span><div><h3>격동의 근대</h3><p>외세의 압력 속에서 대한제국이 수립되었으나, 1910년부터 1945년까지 일제강점기를 겪었습니다. 국내외에서 독립을 향한 다양한 운동이 이어졌습니다.</p></div></article>
-          <article><span class="year">1945 — 현재</span><div><h3>분단과 민주주의, 오늘</h3><p>해방 이후 한반도는 남북으로 나뉘었고 한국전쟁을 겪었습니다. 대한민국은 산업화와 민주화를 함께 이루며 세계와 연결된 사회로 성장해 왔습니다.</p></div></article>
-        </div>
-      </section>
+<body>
+  <h1>Hello World!</h1>
+  <h3>Jae Seung Lee</h3>
 
-      <div class="quote"><p>역사는 지나간 시간이 아니라, 오늘을 이해하기 위해 계속해서 읽어야 할 이야기입니다.</p></div>
+  <script>
+    document.querySelector('h1').addEventListener('click', function () {
+      this.style.color = 'red';
+    });
 
-      <section>
-        <div class="section-head"><h2>세 가지 키워드</h2><p>복잡하고 긴 역사를 관통하는 몇 가지 주제는 현재의 한국 사회와 문화에도 이어집니다.</p></div>
-        <div class="facts"><div class="fact"><strong>연결</strong><span>대륙과 바다 사이에서 이루어진 활발한 교류</span></div><div class="fact"><strong>기록</strong><span>문자와 인쇄, 실록으로 이어진 기록의 전통</span></div><div class="fact"><strong>변화</strong><span>위기를 지나 새로운 질서를 만들어 온 회복의 힘</span></div></div>
-      </section>
-      <footer><span>LECTURE 01 · KOREAN HISTORY</span><span>© 2026</span></footer>
-    </main>
-  </body>
+    document.querySelector('h3').addEventListener('click', function () {
+      this.style.color = 'blue';
+    });
+  </script>
+</body>
 </html>
