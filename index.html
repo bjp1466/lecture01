@@ -1,30 +1,103 @@
-
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <title>Hello World</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="공부 가능 시간과 컨디션에 맞춰 집중 루틴을 만드는 웹앱" />
+    <title>Focus Flow | 집중 루틴 생성기</title>
+    <style>
+      :root { --blue:#1956c9; --blue-dark:#103b91; --blue-soft:#eaf1ff; --ink:#172033; --muted:#667085; --line:#dce3f0; --paper:#f8fbff; }
+      * { box-sizing:border-box; }
+      body { min-height:100vh; margin:0; display:grid; place-items:center; padding:24px; background:var(--paper); color:var(--ink); font-family:"Pretendard","Noto Sans KR",Arial,sans-serif; }
+      main { width:min(100%,560px); padding:clamp(32px,7vw,56px); border:1px solid var(--line); border-top:5px solid var(--blue); border-radius:20px; background:#fff; box-shadow:0 20px 50px rgba(25,86,201,.08); }
+      .eyebrow { margin:0 0 10px; color:var(--blue); font-size:.78rem; font-weight:800; letter-spacing:.12em; }
+      h1 { margin:0; font-size:clamp(2rem,5vw,2.8rem); letter-spacing:-.06em; }
+      .intro { margin:15px 0 34px; color:var(--muted); line-height:1.7; }
+      label { display:block; margin-bottom:9px; font-size:.92rem; font-weight:700; }
+      .input-row { display:flex; gap:10px; }
+      input, select { width:100%; min-width:0; padding:15px 16px; border:1px solid var(--line); border-radius:11px; color:var(--ink); background:#fff; font:inherit; font-size:1rem; outline:none; }
+      input:focus, select:focus { border-color:var(--blue); box-shadow:0 0 0 4px var(--blue-soft); }
+      button { flex:0 0 auto; padding:0 20px; border:0; border-radius:11px; background:var(--blue); color:#fff; cursor:pointer; font:inherit; font-weight:800; }
+      button:hover { background:var(--blue-dark); }
+      #result { min-height:88px; margin:26px 0 0; padding:20px; border-radius:12px; background:var(--blue-soft); color:var(--blue-dark); font-size:1.05rem; font-weight:700; line-height:1.65; }
+      .routine-list { margin:14px 0 0; padding-left:22px; font-size:.95rem; font-weight:500; }
+      .routine-list li + li { margin-top:7px; }
+      .hint { margin:17px 0 0; color:var(--muted); font-size:.82rem; }
+      @media (max-width:420px) { .input-row { flex-direction:column; } button { min-height:50px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">FOCUS FLOW PLANNER</p>
+      <h1>집중 루틴 생성기</h1>
+      <p class="intro">오늘의 공부 가능 시간과 컨디션을 입력하면, 나에게 맞는 집중·휴식 루틴을 만들어 드립니다.</p>
 
-  <style>
-    h1, h3 {
-      color: black;
-      cursor: pointer;
-    }
-  </style>
-</head>
+      <label for="studyMinutes">공부 가능 시간과 현재 컨디션</label>
+      <div class="input-row">
+        <input id="studyMinutes" type="number" min="1" inputmode="numeric" placeholder="예: 90분" autocomplete="off" />
+        <select id="energyLevel" aria-label="현재 컨디션">
+          <option value="low">낮음</option>
+          <option value="medium" selected>보통</option>
+          <option value="high">높음</option>
+        </select>
+        <button id="createButton" type="button">만들기</button>
+      </div>
+      <div id="result" aria-live="polite">시간과 컨디션을 입력해 주세요.</div>
+      <p class="hint">예: 90분 · 보통 → 25분 집중과 5분 휴식을 반복하는 루틴</p>
+    </main>
 
-<body>
-  <h1>Hello World!</h1>
-  <h3>Jae Seung Lee</h3>
+    <script>
+      const studyMinutes = document.querySelector("#studyMinutes");
+      const energyLevel = document.querySelector("#energyLevel");
+      const createButton = document.querySelector("#createButton");
+      const result = document.querySelector("#result");
 
-  <script>
-    document.querySelector('h1').addEventListener('click', function () {
-      this.style.color = 'red';
-    });
+      // 함수, 조건문, 반복문을 이용해 집중·휴식 블록을 만듭니다.
+      function createRoutine(totalMinutes, energy) {
+        let focusMinutes = 25;
+        let breakMinutes = 5;
 
-    document.querySelector('h3').addEventListener('click', function () {
-      this.style.color = 'blue';
-    });
-  </script>
-</body>
+        if (energy === "low") {
+          focusMinutes = 20;
+          breakMinutes = 10;
+        } else if (energy === "high") {
+          focusMinutes = 35;
+          breakMinutes = 5;
+        }
+
+        const blocks = [];
+        let remainingMinutes = totalMinutes;
+
+        while (remainingMinutes >= focusMinutes) {
+          blocks.push(`집중 ${focusMinutes}분`);
+          remainingMinutes -= focusMinutes;
+
+          if (remainingMinutes >= breakMinutes) {
+            blocks.push(`휴식 ${breakMinutes}분`);
+            remainingMinutes -= breakMinutes;
+          }
+        }
+
+        if (remainingMinutes > 0) blocks.push(`마무리 정리 ${remainingMinutes}분`);
+        return blocks;
+      }
+
+      function showRoutine() {
+        const totalMinutes = Number(studyMinutes.value);
+
+        if (!Number.isInteger(totalMinutes) || totalMinutes < 20) {
+          result.textContent = "20분 이상의 정수를 입력해 주세요. 예: 60, 90, 120";
+          return;
+        }
+
+        const routine = createRoutine(totalMinutes, energyLevel.value);
+        result.innerHTML = `<strong>${totalMinutes}분 루틴이 준비됐어요.</strong><ol class="routine-list">${routine.map((block) => `<li>${block}</li>`).join("")}</ol>`;
+      }
+
+      createButton.addEventListener("click", showRoutine);
+      studyMinutes.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") showRoutine();
+      });
+    </script>
+  </body>
 </html>
